@@ -3,6 +3,8 @@ package MeniuPrincipal;
 import InputsReaders.Inputs;
 import LoginRegister.LoginRegister;
 import Momentan.User;
+import Search.Search;
+import Update.Updates;
 
 import java.nio.file.LinkPermission;
 import java.util.Scanner;
@@ -83,6 +85,8 @@ public class Meniu implements MeniuI {
         Scanner scanner = new Scanner(System.in);
         boolean retry = true;
         Inputs input = new Inputs();
+        Search search = new Search();
+        Updates updates = new Updates();
         while (retry) {
 
             System.out.println("1. Search Games");
@@ -113,7 +117,7 @@ public class Meniu implements MeniuI {
                 case "promote user":
                     System.out.println("Enter the name of the user you want to promote");
                     String name = scanner.nextLine();
-                    currentUser.promoteUser(new User(name, "password"));
+                    updates.promoteUser(name);
                     break;
                 case "6":
                 case "demote user":
