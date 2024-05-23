@@ -2,9 +2,10 @@ package Momentan;
 
 import lombok.Getter;
 
-public class User {
+public class User implements UserI {
     @Getter
     private String username;
+    @Getter
     private String password;
     @Getter
     private boolean admin;
@@ -26,5 +27,25 @@ public class User {
     }
 
 
+
+    @Override
+    public void wishlistGame(String name) {
+
+    }
+
+    @Override
+    public void buyGame(String name) {
+
+    }
+
+    @Override
+    public void rateGame(String name, int rating) {
+
+    }
+
+    @Override
+    public void commentGame(String name, String comment) {
+
+    }
 }
 

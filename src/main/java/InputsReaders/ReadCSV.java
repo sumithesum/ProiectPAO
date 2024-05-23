@@ -34,18 +34,5 @@ public class ReadCSV {
         }
 
     }
-    public static void main(String[] args) {
-        try {
-            ReadCSV obj = new ReadCSV();
-            List<String[]> l = obj.readCSV("src/main/csv/Users.csv");
-            for (String[] s : l) {
-                for (String s1 : s) {
-                    System.out.print(s1 + " ");
-                }
-                System.out.println();
-            }
-        } catch (FileNotFoundException e) {
 
-        }
-    }
 }
