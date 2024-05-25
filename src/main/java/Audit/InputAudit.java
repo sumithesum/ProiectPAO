@@ -5,7 +5,18 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The InputAudit class provides methods for auditing user commands by
+ * inserting audit records into a database and reading them.
+ */
 public class InputAudit {
+
+    /**
+     * Inserts an audit record into the database.
+     *
+     * @param command the command to be audited
+     * @param username the username of the user executing the command
+     */
     public static void inputAudit(String command, String username) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
@@ -15,6 +26,13 @@ public class InputAudit {
             System.out.println("Error in input Audit ");
         }
     }
+
+    /**
+     * Reads audit records for a specific user from the database.
+     *
+     * @param username the username of the user whose audit records are to be retrieved
+     * @return a list of Audit objects representing the audit records of the user
+     */
     public static List<Audit> readAudit(String username) {
         try {
             List<Audit> auditList = new ArrayList<>();
@@ -33,9 +51,10 @@ public class InputAudit {
             }
             return auditList;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error in read Audit ");
             return null;
         }
     }
 }
+

@@ -4,10 +4,21 @@ import Clase.Game;
 
 import java.util.Scanner;
 
+/**
+ * The Utils class contains utility methods for the application, such as checking if a string is numeric
+ * and reading game information from the user.
+ */
 public class Utils {
+    /**
+     * Checks if a string is numeric.
+     *
+     * @param str the string to check
+     * @return true if the string is numeric, false otherwise
+     */
     public static boolean isNumeric(String str) {
         return str.matches("\\d+(\\.\\d+)?");
     }
+
     public static Game readGame(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the name of the game");

@@ -10,7 +10,17 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.List;
 
-public class Search implements SearchI {
+/**
+ * The Search class provides methods for searching the database for users, games, and reviews,ect.
+
+ */
+public class Search  {
+    /**
+     * Searches the database for a user with the specified username.
+     *
+     * @param username the username of the user to search for
+     * @return the User object with the specified username, or null if the user is not found
+     */
     public User searchUser(String username) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
@@ -29,7 +39,12 @@ public class Search implements SearchI {
     }
 
 
-    @Override
+    /**
+     * Searches the database for a game with the specified name.
+     *
+     * @param name the name of the game to search for
+     * @return the Game object with the specified name, or null if the game is not found
+     */
     public Game searchGame(String name) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
@@ -52,11 +67,13 @@ public class Search implements SearchI {
         }
     }
 
+
     /**
-     * @param gameName
-     * @return
+     * Searches the database for a reviews with the specified game name.
+     *
+     * @param gameName the name of the game to search for
+     * @return a list of Review objects with the specified game name, or null if the game is not found
      */
-    @Override
     public List<Review> searchReview(String gameName) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
@@ -78,7 +95,12 @@ public class Search implements SearchI {
             return null;
         }
     }
-
+    /**
+     * Searches the database for a reviews with the specified user name.
+     *
+     * @param userName the name of the user to search for
+     * @return a list of Review objects with the specified user name, or null if the user is not found
+     */
     public List<Review> searchReviewUser(String userName) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
@@ -100,7 +122,13 @@ public class Search implements SearchI {
             return null;
         }
     }
-
+    /**
+     * Searches the database for a review with the specified user name and game name.
+     *
+     * @param userName the name of the user to search for
+     * @param gameName the name of the game to search for
+     * @return the Review object with the specified user name and game name, or null if the review is not found
+     */
     public Review searchReviewUserGame(String userName, String gameName) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
@@ -121,6 +149,13 @@ public class Search implements SearchI {
         }
     }
 
+    /**
+     * Searches the database for a played with the specified user name and game name.
+     *
+     * @param gameName the name of the game to search for
+     * @param userName the name of the user to search for
+     * @return the Played object with the specified user name and game name, or null if the played is not found
+     */
     public Played searchPlayed(String gameName, String userName) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
@@ -137,6 +172,12 @@ public class Search implements SearchI {
         }
     }
 
+    /**
+     * Searches the database for a playeds with the specified user name.
+     *
+     * @param userName the name of the user to search for
+     * @return a list of Played objects with the specified user name, or null if the user is not found
+     */
     public List<Played> searchPlayedUser(String userName) {
         List<Played> played = new java.util.ArrayList<>(List.of());
         try {
@@ -156,6 +197,12 @@ public class Search implements SearchI {
         }
     }
 
+    /**
+     * Searches the database for a playeds with the specified game name.
+     *
+     * @param gameName the name of the game to search for
+     * @return a list of Played objects with the specified game name, or null if the game is not found
+     */
     public List<Played> searchPlayedGame(String gameName) {
         List<Played> played = new java.util.ArrayList<>(List.of());
         try {

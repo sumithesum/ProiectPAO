@@ -8,11 +8,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
 
-
+/**
+ * The UpdateGame class contains methods for updating game information in the database,
+ * such as the game rating and deleting a game.
+ */
 public class UpdateGame {
 
 
-
+    /**
+     * Updates the rating of a game in the database based on the reviews associated with the game.
+     * @param game
+     * @return void
+     */
     public static void  updateRating(Game game) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
@@ -34,7 +41,11 @@ public class UpdateGame {
         }
     }
 
-
+    /**
+     * Deletes a game from the database.
+     * @param name the name of the game to be deleted
+     * @return void
+     */
     public static void delete(String name) {
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
