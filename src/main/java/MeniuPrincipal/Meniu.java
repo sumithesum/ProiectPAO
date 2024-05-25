@@ -106,7 +106,7 @@ public class Meniu implements MeniuI {
             System.out.println();
             System.out.println();
 
-            System.out.println("Admin Menu:");
+            System.out.println("User Menu:");
 
             System.out.println("1. Search Games");
             System.out.println("2. Add Game");
