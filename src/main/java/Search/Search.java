@@ -1,9 +1,9 @@
 package Search;
 
-import Momentan.Game;
-import Momentan.Played;
-import Momentan.Review;
-import Momentan.User;
+import Clase.Game;
+import Clase.Played;
+import Clase.Review;
+import Clase.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

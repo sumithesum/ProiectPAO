@@ -1,4 +1,4 @@
-package Momentan;
+package Clase;
 
 public class Game {
 

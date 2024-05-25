@@ -1,7 +1,7 @@
 package Search;
-import Momentan.Game;
-import Momentan.Review;
-import Momentan.User;
+import Clase.Game;
+import Clase.Review;
+import Clase.User;
 
 import java.util.List;
 

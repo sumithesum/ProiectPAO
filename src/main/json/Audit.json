@@ -1,0 +1,34 @@
+[
+  {
+    "Command": "exit",
+    "Username": "sumithesum"
+  },
+  {
+    "Command": "output played to myoutput src/main/myinput/played.txt",
+    "Username": "sumithesum"
+  },
+  {
+    "Command": "add played using myinput src/main/myinput/played.txt",
+    "Username": "sumithesum"
+  },
+  {
+    "Command": "output played to json src/main/json/played.json",
+    "Username": "sumithesum"
+  },
+  {
+    "Command": "output played to csv src/main/csv/plyed.csv",
+    "Username": "sumithesum"
+  },
+  {
+    "Command": "add played using csv src/main/csv/plyed.csv",
+    "Username": "sumithesum"
+  },
+  {
+    "Command": "exit",
+    "Username": "sumithesum"
+  },
+  {
+    "Command": "read audit of a user sumithesum",
+    "Username": "sumithesum"
+  }
+]

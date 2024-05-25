@@ -1,6 +1,6 @@
 package Update;
 
-import Momentan.Review;
+import Clase.Review;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

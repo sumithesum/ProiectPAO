@@ -1,10 +1,8 @@
 package MeniuPrincipal;
 
 
-import Momentan.Admin;
-import Momentan.User;
-
-import javax.swing.plaf.PanelUI;
+import Clase.Admin;
+import Clase.User;
 
 public interface MeniuI {
     public User LoginMeniu();

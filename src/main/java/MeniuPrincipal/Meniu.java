@@ -4,7 +4,7 @@ import Audit.Audit;
 import Audit.InputAudit;
 import InputsReaders.*;
 import LoginRegister.LoginRegister;
-import Momentan.*;
+import Clase.*;
 import Search.Search;
 import Update.UpdatePlayed;
 import Update.UpdateReview;
@@ -140,7 +140,16 @@ public class Meniu implements MeniuI {
             System.out.println("30. Add game using MyInput");
             System.out.println("31. Output game to MyOutput");
             System.out.println("32. Read audit of a user");
-            System.out.println("33. Exit");
+            System.out.println("33. Add played using CSV");
+            System.out.println("34. Output played to CSV");
+            System.out.println("35. Add played using JSON");
+            System.out.println("36. Output played to JSON");
+            System.out.println("37. Add played using MyInput");
+            System.out.println("38. Output played to MyOutput");
+            System.out.println("39. Output audit to CSV");
+            System.out.println("40. Output audit to JSON");
+            System.out.println("41. Output audit to MyOutput");
+            System.out.println("42. Exit");
 
             String option = scanner.nextLine();
 
@@ -502,6 +511,75 @@ public class Meniu implements MeniuI {
                         System.out.println("No commands found");
                     break;
                 case "33":
+                case "add played using csv":
+                    System.out.println("Enter the path of the csv file");
+                    path = scanner.nextLine();
+                    in.CSVInput(path);
+                    InputAudit.inputAudit("add played using csv " + path, currentUser.getUsername());
+                    break;
+                case "34":
+                case "output played to csv":
+                    System.out.println("Enter the path of the csv file");
+                    path = scanner.nextLine();
+                    outputs = new OutputPlayed(path);
+                    outputs.CSVOutput();
+                    InputAudit.inputAudit("output played to csv " + path, currentUser.getUsername());
+                    break;
+                case "35":
+                case "add played using json":
+                    System.out.println("Enter the path of the json file");
+                    path = scanner.nextLine();
+                    in.JsonInput(path);
+                    InputAudit.inputAudit("add played using json " + path, currentUser.getUsername());
+                    break;
+                case "36":
+                case "output played to json":
+                    System.out.println("Enter the path of the json file");
+                    path = scanner.nextLine();
+                    outputs = new OutputPlayed(path);
+                    outputs.JsonOutput();
+                    InputAudit.inputAudit("output played to json " + path, currentUser.getUsername());
+                    break;
+                case "37":
+                case "add played using myinput":
+                    System.out.println("Enter the path of the file");
+                    path = scanner.nextLine();
+                    in.MyInput(path);
+                    InputAudit.inputAudit("add played using myinput " + path, currentUser.getUsername());
+                    break;
+                case "38":
+                case "output played to myoutput":
+                    System.out.println("Enter the path of the file");
+                    path = scanner.nextLine();
+                    outputs = new OutputPlayed(path);
+                    outputs.MyOutput();
+                    InputAudit.inputAudit("output played to myoutput " + path, currentUser.getUsername());
+                    break;
+                case "39":
+                case "output audit to csv":
+                    System.out.println("Enter the path of the csv file");
+                    path = scanner.nextLine();
+                    outputs = new OutputAudit(path);
+                    outputs.CSVOutput();
+                    InputAudit.inputAudit("output audit to csv " + path, currentUser.getUsername());
+                    break;
+                case "40":
+                case "output audit to json":
+                    System.out.println("Enter the path of the json file");
+                    path = scanner.nextLine();
+                    outputs = new OutputAudit(path);
+                    outputs.JsonOutput();
+                    InputAudit.inputAudit("output audit to json " + path, currentUser.getUsername());
+                    break;
+                case "41":
+                case "output audit to myoutput":
+                    System.out.println("Enter the path of the file");
+                    path = scanner.nextLine();
+                    outputs = new OutputAudit(path);
+                    outputs.MyOutput();
+                    InputAudit.inputAudit("output audit to myoutput " + path, currentUser.getUsername());
+                    break;
+                case "42":
                 case "exit":
                     System.out.println("Goodbye!");
                     retry = false;
@@ -542,7 +620,8 @@ public class Meniu implements MeniuI {
             System.out.println("7. Search reviews on Game");
             System.out.println("8. Search reviews of a user");
             System.out.println("9. Delete account");
-            System.out.println("9. Exit");
+            System.out.println("10. See comand history");
+            System.out.println("11. Exit");
 
             String option = scanner.nextLine();
 
@@ -696,6 +775,20 @@ public class Meniu implements MeniuI {
                     InputAudit.inputAudit("delete account", currentUser.getUsername());
                     System.out.println("Account deleted");
                     break;
+                case "10":
+                case "see comand history":
+                    InputAudit.inputAudit("see comand history", currentUser.getUsername());
+                    List<Audit> auditList = InputAudit.readAudit(currentUser.getUsername());
+
+                    if (auditList != null)
+                        for (Audit audit : auditList)
+                            audit.printAudit();
+                    if (auditList == null)
+                        System.out.println("No commands found");
+                    else if (auditList.isEmpty())
+                        System.out.println("No commands found");
+                    break;
+                case "11":
                 case "exit":
                     System.out.println("Goodbye!");
                     retry = false;

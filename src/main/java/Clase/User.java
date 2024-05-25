@@ -1,11 +1,11 @@
-package Momentan;
+package Clase;
 
 import lombok.Getter;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public abstract class User {
+public  class User {
     @Getter
     private String username;
     @Getter

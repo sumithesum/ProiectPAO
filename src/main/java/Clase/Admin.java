@@ -1,15 +1,15 @@
-package Momentan;
+package Clase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-public class Admin extends User implements AdminI{
+public class Admin extends User {
 
     public Admin(String username, String password) {
         super(username, password);
     }
-    @Override
+
     public void promoteUser(String username) {
         try {
 
@@ -24,7 +24,7 @@ public class Admin extends User implements AdminI{
         }
     }
 
-    @Override
+
     public void demoteUser(String username) {
         try {
 
@@ -40,7 +40,7 @@ public class Admin extends User implements AdminI{
 
     }
 
-    @Override
+
     public void deleteUser(String name) {
         try {
 

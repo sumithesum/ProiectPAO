@@ -1,6 +1,6 @@
 package utils;
 
-import Momentan.Game;
+import Clase.Game;
 
 import java.util.Scanner;
 

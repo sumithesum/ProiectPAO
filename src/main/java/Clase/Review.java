@@ -1,8 +1,6 @@
-package Momentan;
+package Clase;
 
 import lombok.Getter;
-
-import javax.swing.plaf.PanelUI;
 
 public class Review {
     @Getter

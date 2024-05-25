@@ -1,7 +1,7 @@
 import Database.Database;
 import MeniuPrincipal.Meniu;
-import Momentan.Admin;
-import Momentan.User;
+import Clase.Admin;
+import Clase.User;
 
 public class Main {
     public static void main(String[] args) {

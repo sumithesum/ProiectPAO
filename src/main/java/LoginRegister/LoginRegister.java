@@ -1,9 +1,8 @@
 package LoginRegister;
 
-import Momentan.User;
+import Clase.User;
 
 
-import javax.swing.*;
 import java.sql.*;
 import java.text.MessageFormat;
 import java.util.Scanner;

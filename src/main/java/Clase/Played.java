@@ -1,4 +1,4 @@
-package Momentan;
+package Clase;
 
 import lombok.Getter;
 

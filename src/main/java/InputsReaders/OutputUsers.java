@@ -1,13 +1,11 @@
 package InputsReaders;
 
-import Momentan.User;
+import Clase.User;
 import Search.Search;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.*;
 
 public class OutputUsers extends Outputs {

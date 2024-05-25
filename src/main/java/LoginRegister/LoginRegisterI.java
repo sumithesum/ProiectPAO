@@ -1,7 +1,7 @@
 package LoginRegister;
 
 
-import Momentan.User;
+import Clase.User;
 
 public interface LoginRegisterI {
     User login();

@@ -1,15 +1,12 @@
 package Update;
 
-import Momentan.Game;
-import Momentan.Review;
-import Momentan.User;
+import Clase.Game;
+import Clase.Review;
 import Search.Search;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
-
-import static utils.Utils.isNumeric;
 
 
 public class UpdateGame {

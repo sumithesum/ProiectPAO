@@ -1,0 +1,8 @@
+exit,sumithesum
+output played to myoutput src/main/myinput/played.txt,sumithesum
+add played using myinput src/main/myinput/played.txt,sumithesum
+output played to json src/main/json/played.json,sumithesum
+output played to csv src/main/csv/plyed.csv,sumithesum
+add played using csv src/main/csv/plyed.csv,sumithesum
+exit,sumithesum
+read audit of a user sumithesum,sumithesum

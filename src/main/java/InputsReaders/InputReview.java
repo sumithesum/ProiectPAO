@@ -1,8 +1,8 @@
 package InputsReaders;
 
-import Momentan.Game;
-import Momentan.Review;
-import Momentan.User;
+import Clase.Game;
+import Clase.Review;
+import Clase.User;
 import Search.Search;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

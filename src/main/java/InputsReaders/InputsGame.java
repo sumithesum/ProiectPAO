@@ -1,8 +1,7 @@
 package InputsReaders;
 
-import Momentan.Game;
-import Momentan.Review;
-import Momentan.User;
+import Clase.Game;
+import Clase.Review;
 import Search.Search;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +13,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 

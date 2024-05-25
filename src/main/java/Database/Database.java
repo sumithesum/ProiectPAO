@@ -16,13 +16,13 @@ public class Database {
                     "    FOREIGN KEY (Username) REFERENCES user(username),\n" +
                     "    FOREIGN KEY (GameName) REFERENCES game(name)\n" +
                     ");";
-            String creareUser = "CREATE TABLE `user` (\n" +
+            String creareUser = "CREATE TABLE IF NOT EXISTS `user` (\n" +
                     "  `username` varchar(100) NOT NULL,\n" +
                     "  `password` varchar(100) NOT NULL,\n" +
                     "  `admin` tinyint DEFAULT '0',\n" +
                     "  PRIMARY KEY (`username`)\n" +
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;\n";
-            String creareGame = "CREATE TABLE `game` (\n" +
+            String creareGame = "CREATE TABLE IF NOT EXISTS `game` (\n" +
                     "  `name` varchar(45) NOT NULL,\n" +
                     "  `price` int unsigned DEFAULT '20',\n" +
                     "  `tags` varchar(100) DEFAULT NULL,\n" +
@@ -32,7 +32,7 @@ public class Database {
                     "  `agerating` int DEFAULT NULL,\n" +
                     "  PRIMARY KEY (`name`)\n" +
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;\n";
-            String creareAudit = "CREATE TABLE `audit` (\n" +
+            String creareAudit = "CREATE TABLE IF NOT EXISTS `audit` (\n" +
                     "  `idaudit` int NOT NULL AUTO_INCREMENT,\n" +
                     "  `Comanda` text NOT NULL,\n" +
                     "  `UserName` varchar(100) NOT NULL,\n" +
@@ -60,5 +60,14 @@ public class Database {
         }catch (Exception e){
             System.out.println("Error creating tables");
         }
+
+    }
+    public static Connection getConnection() {
+        try {
+           return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
+        } catch (Exception e) {
+            System.out.println("Error creating connection");
+        }
+        return null;
     }
 }

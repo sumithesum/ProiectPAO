@@ -1,6 +1,8 @@
 package InputsReaders;
 
 import Clase.Game;
+import Clase.Played;
+import Clase.User;
 import Search.Search;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -11,11 +13,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class OutputGame extends Outputs{
-    public OutputGame(String path) {
+public class OutputPlayed extends Outputs{
+    public OutputPlayed(String path) {
         super(path);
     }
-    Game game;
 
     /**
      *
@@ -27,7 +28,7 @@ public class OutputGame extends Outputs{
             PrintWriter pw = new PrintWriter(path);
             boolean append = true;
             while (append) {
-
+                Game game;
                 System.out.println("Input the name of the game");
                 String gameName = scanner.nextLine();
                 Search search = new Search();
@@ -42,25 +43,38 @@ public class OutputGame extends Outputs{
                     }
                     continue;
                 }
+                System.out.println("Input the name of the user");
+                String userName = scanner.nextLine();
+                User user = search.searchUser(userName);
+                if (user == null) {
+                    System.out.println("No user found with this name");
+                    System.out.println("Would you like to try again? y/n");
+                    String option = scanner.nextLine();
+                    if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
+                        append = false;
+                    }
+                    continue;
+                }
+                Played played = search.searchPlayed(gameName, userName);
 
+                if (played == null) {
+                    System.out.println("No played found with this name");
+                    System.out.println("Would you like to try again? y/n");
+                    String option = scanner.nextLine();
+                    if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
+                        append = false;
+                    }
+                    continue;
+                }
                 StringBuilder sb = new StringBuilder();
-                sb.append(game.getName());
+                sb.append(gameName);
                 sb.append(',');
-                sb.append(game.getDescription());
-                sb.append(',');
-                sb.append(game.getTags());
-                sb.append(',');
-                sb.append(game.getPrice());
-                sb.append(',');
-                sb.append(game.getRating());
-                sb.append(',');
-                sb.append(game.getDeveloper());
-                sb.append(',');
-                sb.append(game.getAgeRating());
+                sb.append(userName);
                 sb.append('\n');
                 pw.write(sb.toString());
 
-                System.out.println("Would you like to add another game ? y/n");
+
+                System.out.println("Would you like to add another  ? y/n");
                 String option = scanner.nextLine();
                 if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
                     append = false;
@@ -91,6 +105,8 @@ public class OutputGame extends Outputs{
             Scanner scanner = new Scanner(System.in);
             jsonGenerator.writeStartArray();
             Search search = new Search();
+            Game game;
+            User user;
             boolean append = true;
             while (append) {
                 System.out.println("Input the name of the game:");
@@ -107,19 +123,36 @@ public class OutputGame extends Outputs{
                         append = false;
                     }
                     continue;
-                } else {
+                }
+                System.out.println("Input the name of the user:");
+                String userName = scanner.nextLine();
+                user = search.searchUser(userName);
+                if (user == null) {
+                    System.out.println("No user found with this name");
+                    System.out.println("Would you like to try again? y/n");
+                    String option = scanner.nextLine();
+                    if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
+                        append = false;
+                    }
+                    continue;
+                }else {
 
+                    Played played = search.searchPlayed(gameName, userName);
+                    if (played == null) {
+                        System.out.println("No played found with this name");
+                        System.out.println("Would you like to try again? y/n");
+                        String option = scanner.nextLine();
+                        if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
+                            append = false;
+                        }
+                        continue;
+                    }
                     jsonGenerator.writeStartObject();
-                    jsonGenerator.writeStringField("Name", game.getName());
-                    jsonGenerator.writeStringField("Description", game.getDescription());
-                    jsonGenerator.writeStringField("Tags", game.getTags());
-                    jsonGenerator.writeStringField("Price", game.getPrice());
-                    jsonGenerator.writeStringField("Rating", game.getRating());
-                    jsonGenerator.writeStringField("Developer", game.getDeveloper());
-                    jsonGenerator.writeStringField("AgeRating", game.getAgeRating());
+                    jsonGenerator.writeStringField("game", gameName);
+                    jsonGenerator.writeStringField("user", userName);
                     jsonGenerator.writeEndObject();
                 }
-                System.out.println("Would you like to add another game? y/n");
+                System.out.println("Would you like to add another ? y/n");
                 String option = scanner.nextLine();
                 if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
                     append = false;
@@ -143,6 +176,8 @@ public class OutputGame extends Outputs{
         Scanner scanner = new Scanner(System.in);
         try {
             PrintWriter pw = new PrintWriter(path);
+            Game game;
+            User user;
             boolean append = true;
             while (append) {
 
@@ -160,33 +195,40 @@ public class OutputGame extends Outputs{
                     }
                     continue;
                 } else {
-                    StringBuilder sb = new StringBuilder();
+                    System.out.println("Input the name of the user:");
+                    String userName = scanner.nextLine();
+                    user = search.searchUser(userName);
+                    if (user == null) {
+                        System.out.println("No user found with this name");
+                        System.out.println("Would you like to try again? y/n");
+                        String option = scanner.nextLine();
+                        if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
+                            append = false;
+                        }
+                        continue;
+                    } else {
+                        Played played = search.searchPlayed(gameName, userName);
+                        if (played == null) {
+                            System.out.println("No played found with this name");
+                            System.out.println("Would you like to try again? y/n");
+                            String option = scanner.nextLine();
+                            if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
+                                append = false;
+                            }
+                            continue;
+                        }
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(gameName);
+                        sb.append("->");
+                        sb.append(userName);
+                        sb.append('\n');
+                        pw.write(sb.toString());
+                    }
 
-                    sb.append(game.getName());
-                    sb.append("->");
-
-                    sb.append(game.getDescription());
-                    sb.append("->");
-
-                    sb.append(game.getTags());
-                    sb.append("->");
-
-                    sb.append(game.getPrice());
-                    sb.append("->");
-
-                    sb.append(game.getRating());
-                    sb.append("->");
-
-                    sb.append(game.getDeveloper());
-                    sb.append("->");
-
-                    sb.append(game.getAgeRating());
-                    sb.append('\n');
-                    pw.write(sb.toString());
                 }
 
 
-                System.out.println("Would you like to add another game ? y/n");
+                System.out.println("Would you like to add another ? y/n");
                 String option = scanner.nextLine();
                 if (option.equalsIgnoreCase("n") || option.equalsIgnoreCase("no")) {
                     append = false;

@@ -1,6 +1,6 @@
 package InputsReaders;
 
-import Momentan.Review;
+import Clase.Review;
 import Search.Search;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
