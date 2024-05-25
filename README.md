@@ -4,16 +4,17 @@
 A Java-based application that allows users to review games , and search a large variety of games.
 
 ## Features
-- Multiple types of users;
-- Authentication and authorization;
--Search games
--Rate games and review them (comment on them)
--Audit to see past commands
--Adding played games
--Adding Games ,review and played games in more ways
+  - Multiple types of users;
+  - Authentication and authorization;
+  -Search games
+  -Rate games and review them (comment on them)
+  -Audit to see past commands
+  -Adding played games
+  -Adding Games ,review and played games in more ways
 
 
 ## Database diagram
+![Database ER diagram](https://github.com/sumithesum/ProiectPAO/assets/97793080/d2ec3a11-7407-475d-9f43-d981640c415c)
 
 
 ## Types of users
