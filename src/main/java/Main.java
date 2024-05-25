@@ -1,21 +1,21 @@
+import Database.Database;
 import MeniuPrincipal.Meniu;
 import Momentan.Admin;
 import Momentan.User;
 
 public class Main {
     public static void main(String[] args) {
-        User currentUser  = null;
+        Database.creareTabele();
         Meniu meniu = new Meniu();
-        currentUser = meniu.LoginMeniu();
-        if (currentUser == null)
+        User loginUser = meniu.LoginMeniu();
+        if (loginUser == null)
             return;
-        if (currentUser.isAdmin()) {
-            currentUser = new Admin(currentUser.getUsername(), currentUser.getPassword());
-            meniu.AdminMenu();
+        if (loginUser.isAdmin()) {
+             Admin currentUser = new Admin(loginUser.getUsername(), loginUser.getPassword());
+            meniu.AdminMenu(currentUser);
+        } else {
+            meniu.UserMenu(loginUser);
         }
-        else
-            meniu.UserMenu();
-
 
     }
 }

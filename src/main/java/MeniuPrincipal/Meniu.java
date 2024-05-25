@@ -4,14 +4,10 @@ import Audit.Audit;
 import Audit.InputAudit;
 import InputsReaders.*;
 import LoginRegister.LoginRegister;
-import Momentan.Game;
-import Momentan.Played;
-import Momentan.Review;
-import Momentan.User;
+import Momentan.*;
 import Search.Search;
 import Update.UpdatePlayed;
 import Update.UpdateReview;
-import Update.UpdatesUser;
 import utils.Utils;
 import Update.UpdateGame;
 
@@ -22,12 +18,12 @@ import static java.lang.System.in;
 
 public class Meniu implements MeniuI {
 
-    private User currentUser;
 
     @Override
     public User LoginMeniu() {
         LoginRegister loginRegister = new LoginRegister();
         Scanner scanner = new Scanner(in);
+        User currentUser = null;
         boolean retry = true;
         while (retry) {
 
@@ -92,13 +88,12 @@ public class Meniu implements MeniuI {
     }
 
     @Override
-    public void AdminMenu() {
+    public void AdminMenu(Admin currentUser) {
         Scanner scanner = new Scanner(in);
         boolean retry = true;
         UserInputsUsers inputsUsers = new UserInputsUsers();
         InputsGame inputsGame = new InputsGame();
         Search search = new Search();
-        UpdatesUser updatesUser = new UpdatesUser();
         String path, name;
         Outputs outputs;
         Game game;
@@ -291,7 +286,7 @@ public class Meniu implements MeniuI {
                             updateReview.deleteReview(review2);
 
 
-                     playedList = search.searchPlayedGame(name);
+                    playedList = search.searchPlayedGame(name);
                     if (playedList != null)
                         for (Played played1 : playedList)
                             UpdatePlayed.deletePlayed(played1.getGameName(), played1.getUserName());
@@ -312,7 +307,7 @@ public class Meniu implements MeniuI {
                     else if (reviews.isEmpty())
                         System.out.println("No reviews found");
                     InputAudit.inputAudit("search reviews on game " + name, currentUser.getUsername());
-                break;
+                    break;
                 case "10":
                 case "search reviews of a user":
                     System.out.println("Enter the name of the user you want to search reviews for");
@@ -331,14 +326,14 @@ public class Meniu implements MeniuI {
                 case "promote user":
                     System.out.println("Enter the name of the user you want to promote");
                     name = scanner.nextLine();
-                    updatesUser.promoteUser(name);
+                    currentUser.promoteUser(name);
                     InputAudit.inputAudit("promote user " + name, currentUser.getUsername());
                     break;
                 case "12":
                 case "demote user":
                     System.out.println("Enter the name of the user you want to demote");
                     name = scanner.nextLine();
-                    updatesUser.demoteUser(name);
+                    currentUser.demoteUser(name);
                     InputAudit.inputAudit("demote user " + name, currentUser.getUsername());
                     break;
                 case "13":
@@ -353,7 +348,7 @@ public class Meniu implements MeniuI {
                     if (playedList != null)
                         for (Played played1 : playedList)
                             UpdatePlayed.deletePlayed(played1.getGameName(), played1.getUserName());
-                    updatesUser.deleteUser(name);
+                    currentUser.deleteUser(name);
                     InputAudit.inputAudit("delete user " + name, currentUser.getUsername());
                     break;
                 case "14":
@@ -521,11 +516,12 @@ public class Meniu implements MeniuI {
     }
 
     @Override
-    public void UserMenu()  {
+    public void UserMenu(User currentUser) {
+
         Scanner scanner = new Scanner(in);
         boolean retry = true;
         Search search = new Search();
-        String  name;
+        String name;
         Game game;
         InputPlayed in = new InputPlayed();
         UpdateReview updateReview = new UpdateReview();
@@ -545,6 +541,7 @@ public class Meniu implements MeniuI {
             System.out.println("6. Show games played by a user");
             System.out.println("7. Search reviews on Game");
             System.out.println("8. Search reviews of a user");
+            System.out.println("9. Delete account");
             System.out.println("9. Exit");
 
             String option = scanner.nextLine();
@@ -559,6 +556,7 @@ public class Meniu implements MeniuI {
                         System.out.println("Game found!!!");
                         game.printInfo();
                     }
+                    InputAudit.inputAudit("search games " + name, currentUser.getUsername());
                     break;
 
                 case "2":
@@ -581,6 +579,7 @@ public class Meniu implements MeniuI {
                     System.out.println("Enter the rating you want to give");
                     String rating = scanner.nextLine();
                     InputReview.inputReview(game, currentUser, review, rating);
+                    InputAudit.inputAudit("review on game " + game.getName() + " " + review + " " + rating, currentUser.getUsername());
                     break;
                 case "3":
                 case "delete review on game":
@@ -599,6 +598,7 @@ public class Meniu implements MeniuI {
                     }
                     updateReview.deleteReview(review1);
                     UpdateGame.updateRating(game);
+                    InputAudit.inputAudit("delete review on game " + game.getName() + " " + review1.getComment() + " " + review1.getRating(), currentUser.getUsername());
                     break;
 
                 case "4":
@@ -612,6 +612,7 @@ public class Meniu implements MeniuI {
                     }
 
                     in.inputPlayed(game.getName(), currentUser.getUsername());
+                    InputAudit.inputAudit("add game to played games list " + game.PrintLine(), currentUser.getUsername());
                     break;
                 case "5":
                 case "remove game from played games list":
@@ -630,6 +631,7 @@ public class Meniu implements MeniuI {
                     }
                     UpdatePlayed.deletePlayed(game.getName(), currentUser.getUsername());
                     System.out.println("Game removed from played games list");
+                    InputAudit.inputAudit("remove game from played games list " + game.PrintLine(), currentUser.getUsername());
                     break;
                 case "6":
                 case "show games played by a user":
@@ -648,8 +650,8 @@ public class Meniu implements MeniuI {
                         System.out.println("No games found");
                     else if (playedList.isEmpty())
                         System.out.println("No games found");
+                    InputAudit.inputAudit("show games played by a user " + name, currentUser.getUsername());
                     break;
-
                 case "7":
                 case "search reviews on game":
                     System.out.println("Enter the name of the game you want to search reviews for");
@@ -663,8 +665,8 @@ public class Meniu implements MeniuI {
                         System.out.println("No reviews found");
                     else if (reviews.isEmpty())
                         System.out.println("No reviews found");
-
-                break;
+                    InputAudit.inputAudit("search reviews on game " + name, currentUser.getUsername());
+                    break;
                 case "8":
                 case "search reviews of a user":
                     System.out.println("Enter the name of the user you want to search reviews for");
@@ -677,15 +679,30 @@ public class Meniu implements MeniuI {
                         System.out.println("No reviews found");
                     if (reviews1.isEmpty())
                         System.out.println("No reviews found");
-
+                    InputAudit.inputAudit("search reviews of a user " + name, currentUser.getUsername());
                     break;
 
                 case "9":
+                case "delete account":
+                    reviews1 = search.searchReviewUser(currentUser.getUsername());
+                    if (reviews1 != null)
+                        for (Review review2 : reviews1)
+                            updateReview.deleteReview(review2);
+                    playedList = search.searchPlayedUser(currentUser.getUsername());
+                    if (playedList != null)
+                        for (Played played1 : playedList)
+                            UpdatePlayed.deletePlayed(played1.getGameName(), played1.getUserName());
+                    currentUser.deleteAccount();
+                    InputAudit.inputAudit("delete account", currentUser.getUsername());
+                    System.out.println("Account deleted");
+                    break;
                 case "exit":
                     System.out.println("Goodbye!");
                     retry = false;
+                    InputAudit.inputAudit("exit", currentUser.getUsername());
                     break;
                 default:
+                    InputAudit.inputAudit("invalid option " + option, currentUser.getUsername());
                     System.out.println("Invalid option");
                     break;
             }

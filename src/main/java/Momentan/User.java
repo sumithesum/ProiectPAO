@@ -1,8 +1,11 @@
 package Momentan;
 
 import lombok.Getter;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
-public class User implements UserI {
+public abstract class User {
     @Getter
     private String username;
     @Getter
@@ -25,27 +28,20 @@ public class User implements UserI {
         this.password = null;
         this.admin = false;
     }
-
-
-
-    @Override
-    public void wishlistGame(String name) {
-
+    public void deleteAccount() {
+        try {
+            String comanda = "DELETE FROM login.user WHERE LOWER(username) = LOWER('"+ this.username +"');";
+            Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(comanda);
+            System.out.println("User " + this.username + " has been deleted.");
+        }catch (Exception e){
+            System.out.println("Error deleting account");
+        }
     }
 
-    @Override
-    public void buyGame(String name) {
 
-    }
 
-    @Override
-    public void rateGame(String name, int rating) {
 
-    }
-
-    @Override
-    public void commentGame(String name, String comment) {
-
-    }
 }
 

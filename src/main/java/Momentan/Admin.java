@@ -55,13 +55,5 @@ public class Admin extends User implements AdminI{
         }
     }
 
-    @Override
-    public void addGame(String name) {
 
-    }
-
-    @Override
-    public void removeGame(String name) {
-
-    }
 }
