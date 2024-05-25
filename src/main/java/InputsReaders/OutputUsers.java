@@ -56,12 +56,11 @@ public class OutputUsers extends Outputs {
                 }
 
 
-
             }
             pw.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred while creating the CSV file");
-            e.printStackTrace();
+
         }
 
     }
@@ -115,6 +114,51 @@ public class OutputUsers extends Outputs {
 
     @Override
     public void MyOutput() {
+        Search search = new Search();
+        Scanner scanner = new Scanner(System.in);
+        try {
+            PrintWriter pw = new PrintWriter(path);
+            boolean append = true;
+            while (append) {
+
+                System.out.println("Input the name of the user:");
+                String username = scanner.nextLine();
+
+                user = search.searchUser(username);
+
+                if (user == null) {
+                    System.out.println("User not found");
+                    System.out.println("Would you like to try again? y/n");
+                    String option = scanner.nextLine();
+                    if (option.equalsIgnoreCase("n"))
+                        append = false;
+
+                }
+                else {
+
+
+                    String sb = user.getUsername() +
+                            "->" +
+                            user.getPassword() +
+                            "->" +
+                            (user.isAdmin() ? "Admin" : "User") +
+                            '\n';
+
+                    pw.write(sb);
+                }
+
+                System.out.println("Would you like to add another user? y/n");
+                String option = scanner.nextLine();
+                if (option.toLowerCase().equals("n")) {
+                    append = false;
+                }
+            }
+            pw.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred while creating the MyOutput file");
+
+        }
+
 
     }
 }

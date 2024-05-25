@@ -11,6 +11,7 @@ public class Review {
     private String userName;
     @Getter
     private String rating;
+    @Getter
     private String comment;
 
     public Review(String gameName, String userName, String rating, String comment) {
@@ -20,6 +21,8 @@ public class Review {
         this.comment = comment;
     }
     public void printReview(){
-        System.out.println("Game: " + gameName + "\nUser: " + userName + "\nRating: " + rating + "\nComment: " + comment);
+        System.out.println("Game: " + gameName + "\nUser: " + userName + "\nRating: " + rating + "\nComment: " + comment + "\n");
     }
+
+
 }

@@ -38,11 +38,11 @@ public class InputsGame extends Inputs {
             List<Review> reviews = search.searchReview(game.getName());
             if (reviews.isEmpty())
                 return;
-            int ratingSum = 0;
+            float ratingSum = 0;
             for (Review review1 : reviews) {
-                ratingSum += Integer.parseInt(review1.getRating());
+                ratingSum += Float.parseFloat(review1.getRating());
             }
-            Integer newRating = ratingSum / reviews.size();
+            float newRating = ratingSum / reviews.size();
             String comanda2 = String.format("UPDATE `login`.`game` SET `rating` = '%s' WHERE (`name` = '%s');", newRating, game.getName());
             statement.executeUpdate(comanda2);
         }catch (Exception e){
@@ -54,7 +54,6 @@ public class InputsGame extends Inputs {
             Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
             Statement statement = connection.createStatement();
             String comanda = "INSERT INTO login.game (name,price,tags,developer,description,rating,agerating) VALUES ('"+game.getName()+"',"+game.getPrice()+",'"+game.getTags()+"','"+game.getDeveloper()+"','"+game.getDescription()+"',"+game.getRating()+","+game.getAgeRating()+");";
-            System.out.println(comanda);
             statement.executeUpdate(comanda);
             System.out.println("Game "+ game.getName() + " added");
             Search search = new Search();

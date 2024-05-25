@@ -59,7 +59,7 @@ public class UserInputsUsers extends Inputs {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("File not found");
         }
     }
 
@@ -84,7 +84,7 @@ public class UserInputsUsers extends Inputs {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Database not found");
+            System.out.println("Error reading file myInput");
         }
     }
 

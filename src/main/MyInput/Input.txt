@@ -1,3 +1,7 @@
-Dorel->Mecanic
-Gadelha->Gadelha
-Dormammu->Dormammu
+Gods->Alex->Its ok->5.00
+Gods->Dorel->ItsGodest->9.00
+Gods->Sumithesum->ItsGod->4.00
+Gods->user1->Great game!->9.50
+Gods->user2->Not bad.->7.00
+Gods->user3->Its ok->10.00
+Gods->user4->Its ok->8.00
