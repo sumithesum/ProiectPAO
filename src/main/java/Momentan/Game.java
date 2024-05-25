@@ -66,7 +66,7 @@ public class Game {
         System.out.println("Age rating: " + ageRating);
     }
 
-    public void setRating(String rating) {
-
+    public String PrintLine(){
+        return "Name: " + name + " Price: " + price + " Rating: " + rating + " Developer: " + developer + " Age rating: " + ageRating;
     }
 }

@@ -115,6 +115,7 @@ public class InputReview extends Inputs{
         }
 
     }
+
     public static void inputReview(Game game, User user, String review , String rating) {
         if (!isNumeric(rating)) {
             System.out.println("Rating must be a number");

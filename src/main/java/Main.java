@@ -1,4 +1,5 @@
 import MeniuPrincipal.Meniu;
+import Momentan.Admin;
 import Momentan.User;
 
 public class Main {
@@ -8,8 +9,10 @@ public class Main {
         currentUser = meniu.LoginMeniu();
         if (currentUser == null)
             return;
-        if (currentUser.isAdmin())
+        if (currentUser.isAdmin()) {
+            currentUser = new Admin(currentUser.getUsername(), currentUser.getPassword());
             meniu.AdminMenu();
+        }
         else
             meniu.UserMenu();
 

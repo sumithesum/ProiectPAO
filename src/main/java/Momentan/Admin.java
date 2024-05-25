@@ -6,6 +6,9 @@ import java.sql.Statement;
 
 public class Admin extends User implements AdminI{
 
+    public Admin(String username, String password) {
+        super(username, password);
+    }
     @Override
     public void promoteUser(String username) {
         try {

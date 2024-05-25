@@ -1,6 +1,7 @@
 package Search;
 
 import Momentan.Game;
+import Momentan.Played;
 import Momentan.Review;
 import Momentan.User;
 
@@ -119,4 +120,60 @@ public class Search implements SearchI {
             return null;
         }
     }
+
+    public Played searchPlayed(String gameName, String userName) {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
+            Statement statement = connection.createStatement();
+            String comanda = "SELECT * FROM played WHERE LOWER(gameName) = LOWER('" + gameName + "') AND LOWER(userName) = LOWER('" + userName + "');";
+            var resultSet = statement.executeQuery(comanda);
+            resultSet.next();
+            String gameName1 = resultSet.getString("gameName");
+            String userName1 = resultSet.getString("userName");
+            return new Played(gameName1, userName1);
+        } catch (Exception e) {
+            System.out.println("Error in searching played");
+            return null;
+        }
+    }
+
+    public List<Played> searchPlayedUser(String userName) {
+        List<Played> played = new java.util.ArrayList<>(List.of());
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
+            Statement statement = connection.createStatement();
+            String comanda = "SELECT * FROM played WHERE LOWER(userName) = LOWER('" + userName + "');";
+            var resultSet = statement.executeQuery(comanda);
+            while (resultSet.next()) {
+                String gameName = resultSet.getString("gameName");
+                String userName1 = resultSet.getString("userName");
+                played.add(new Played(gameName, userName1));
+            }
+            return played;
+        } catch (Exception e) {
+            System.out.println("Error in searching played");
+            return null;
+        }
+    }
+
+    public List<Played> searchPlayedGame(String gameName) {
+        List<Played> played = new java.util.ArrayList<>(List.of());
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/login", "root", "+++xela1");
+            Statement statement = connection.createStatement();
+            String comanda = "SELECT * FROM played WHERE LOWER(gameName) = LOWER('" + gameName + "');";
+            var resultSet = statement.executeQuery(comanda);
+            while (resultSet.next()) {
+                String gameName1 = resultSet.getString("gameName");
+                String userName = resultSet.getString("userName");
+                played.add(new Played(gameName1, userName));
+            }
+            return played;
+        } catch (Exception e) {
+            System.out.println("Error in searching played");
+            return null;
+        }
+    }
 }
+
+
