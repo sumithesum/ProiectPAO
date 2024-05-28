@@ -31,4 +31,5 @@ public abstract class Outputs {
      * Writes output data to a custom format file.
      */
     public abstract void MyOutput();
+
 }

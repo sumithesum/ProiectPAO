@@ -145,6 +145,7 @@ public class Search  {
 
         } catch (Exception e) {
             System.out.println("Error");
+            System.out.println(e.getMessage() );
             return null;
         }
     }
